@@ -4,7 +4,7 @@
 # create a workload identity pool for HCP Terraform
 resource "google_iam_workload_identity_pool" "hcp_tf" {
   project                   = local.google_project_id
-  workload_identity_pool_id = "hcp-tf-pool"
+  workload_identity_pool_id = "hcp-tf-pool-3"
   display_name              = "HCP Terraform Pool"
   description               = "Used to authenticate to Google Cloud"
 }
