@@ -1,7 +1,7 @@
 # example service account that HCP Terraform will impersonate
 resource "google_service_account" "sa-hcp-tf" {
   account_id   = "sa-hcp-terraform"
-  display_name = "sa-hcp-terraform"
+  display_name = "Service Account for HCP Terraform"
   project      = local.google_project_id
 }
 
@@ -13,8 +13,11 @@ resource "google_service_account_iam_member" "example_workload_identity_user" {
 }
  
 # grant 'example' service account permissions to create a bucket
-resource "google_project_iam_member" "example_storage_admin" {
+resource "google_project_iam_member" "example_editor_admin" {
   member  = "serviceAccount:${google_service_account.sa-hcp-tf.email}"
   role    = "roles/storage.admin"
   project = local.google_project_id
 }
+
+
+//assertion.terraform_organization_name=="Terraform_Entwickleraustausch"
