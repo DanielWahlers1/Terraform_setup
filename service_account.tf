@@ -9,13 +9,15 @@ resource "google_service_account" "sa-hcp-tf" {
 resource "google_service_account_iam_member" "example_workload_identity_user" {
   service_account_id = google_service_account.sa-hcp-tf.name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.hcp_tf.name}/attribute.terraform_workspace_id/${local.tfc_workspace_name}"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.hcp_tf.name}/attribute.terraform_workspace_id/ws-s5GxjAemWFtzfwNV"
 }
  
+
+
 # grant 'example' service account permissions to create a bucket
 resource "google_project_iam_member" "example_editor_admin" {
   member  = "serviceAccount:${google_service_account.sa-hcp-tf.email}"
-  role    = "roles/storage.admin"
+  role    = "roles/owner"
   project = local.google_project_id
 }
 
